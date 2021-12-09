@@ -22,13 +22,30 @@ export default function TextForm(props) {
     console.log("On Change");
     setText(event.target.value);
   };
+
+  const handleClearClick = ()=>{ 
+    let newText = '';
+    setText(newText)
+}
+
+      
+let handleCopy = () => {
+  navigator.clipboard.writeText(text); 
+
+}
+ 
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    }
+
   
   // text = ("new text"); //wrong way to change state
   // setText ("new text");
   return (
     <>
     <div className = "container"  style ={{color: props.mode==='dark' ? 'white' : '#042743'}}>
-      <h1 style ={{color: props.mode==='dark' ? 'white' : '#042743'}}>{props.heading}</h1>
+      <h1 >{props.heading}</h1>
 
       <div className="mb-3">
         <label htmlFor="myBox" className="form-label"></label>
@@ -38,7 +55,7 @@ export default function TextForm(props) {
           onChange={handleOnChange}
           id="myBox"
           rows="8"
-          style ={{backgroundColor: props.mode==='dark' ? 'grey' : 'white'}}
+          style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#042743'}} 
         ></textarea>
       </div>
       <button className="btn-primary mx-2 " onClick={handleUpClick}>
@@ -50,11 +67,21 @@ export default function TextForm(props) {
       <button className="btn-primary mx-2" onClick={handleTrClick}>
         Trim first whitespaces
       </button>
+      <button className="btn-primary mx-2" onClick={handleCopy}>
+        Copy Text
+      </button>
+      <button className="btn-primary mx-2" onClick={handleExtraSpaces}>
+        Remove Extra Spaces
+      </button>
+      <button className="btn-primary mx-2" onClick={handleClearClick}>
+       Clear Text
+      </button>
     </div>
     <div className = "container my-3" style ={{color: props.mode==='dark' ? 'white' : '#042743'}}>
       <h2>Your text summary</h2>
       <p>{text.split(" ").length-1} words, {text.length} characters</p>
-      <p>{0.008 * text.split(" ").length} Minutes to read</p>
+      <p> 
+       {0.008 * text.split(" ").length}  Minutes to read </p>
       <h3>Preview</h3>
       <p>{text.length>0?text:"Enter something in text box to preview it here"}</p>
     </div>

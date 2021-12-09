@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
@@ -7,9 +8,9 @@ export default function Navbar(props) {
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} `}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -24,15 +25,9 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
-                Home
-              </a>
-            </li>
+              <Link className="nav-a active" aria-current="page" to="/">home</Link></li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                {props.aboutText}
-              </a>
-            </li>
+              <Link className="nav-a" to="/About">  {props.aboutText}</Link></li>
           </ul>
           {/* <form className="d-flex">
             <input
@@ -45,12 +40,16 @@ export default function Navbar(props) {
               Search
             </button>
           </form> */}
-        <div className= {`form-check form-switch text-${props.mode==='light' ? 'dark' : 'light'}`}>
+          <div
+            className={`form-check form-switch text-${
+              props.mode === "light" ? "dark" : "light"
+            }`}
+          >
             <input
               type="checkbox"
               className="form-check-input"
               id="flexSwitchDefault"
-              onClick = {props.toggleMode}
+              onClick={props.toggleMode}
             />
             <label className="form-chrck-label" htmlFor="flexSwitchDefault">
               Enable Dark Mode
