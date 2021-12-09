@@ -22,6 +22,7 @@ export default function Navbar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
             <Link className="nav-link" aria-current="page" to="/">
@@ -61,6 +62,7 @@ export default function Navbar(props) {
           </label>
         </div>
       </div>
+    </div>
     </nav>
   );
 }
