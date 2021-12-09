@@ -1,47 +1,36 @@
-import React, {useState} from "react";
+import React from "react";
 
-export default function About() {
+export default function About(props) {
 
-   const [myStyle, setMyStyle] = useState( {
-    color : 'black',
-   backgroundColor: 'white'
-}
-)
-  const [btnText, setbtnText] = useState('Enable Dark Mode')
-  let toggleStyle = () => {
-    if(myStyle.color === 'white'){
-      setMyStyle({
-        color : 'black',
-       backgroundColor: 'white',
-       border : '1px solid white'
-      })
-      setbtnText('Enable Dark Mode');
-    }
-    else {
-      setMyStyle ({
-        color : 'white',
-       backgroundColor: 'black'
-      })
-      setbtnText('Enable Light Mode');
-    }
-    }
+//    const [myStyle, setMyStyle] = useState( {
+//     color : 'black',
+//    backgroundColor: 'white'
+// }
+// )
+
+  let myStyle ={
+    color: props.mode === 'dark' ? 'white' : '#042743',
+    backgroundColor: props.mode === 'dark' ? 'rgb(36 74 104)' : 'white',
+    border: "2px solid white"
+  }
+
    
   return (
-    <div className="container" style = {myStyle}>
+    <div className="container" style = {{color: props.mode === 'dark' ? 'white' : '#042743'}}>
      <h1 className = "my-321">About Us</h1>
-      <div className="accordion" id="accordionExample" style={myStyle}>
-        <div className="accordion-item" style ={myStyle}>
+      <div className="accordion" id="accordionExample" >
+        <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
               className="accordion-button" 
-              style ={myStyle}
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
               aria-expanded="false"
               aria-controls="collapseOne"
+              style={myStyle}
             >
-              Accordion Item #1
+             <strong>Manipulate your text</strong>
             </button>
           </h2>
           <div
@@ -51,14 +40,7 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style ={myStyle}>
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+             Text-Manipulator gives you a way to manipulate your text quickly and efficiently.
             </div>
           </div>
         </div>
@@ -73,7 +55,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Accordion Item #2
+             <strong> Free to Use</strong>
             </button>
           </h2>
           <div
@@ -83,14 +65,7 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style ={myStyle}>
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              Text-Manipulator is a free character counter tool that provides instant character count and word count stats for a given text. Text-Manipulator reports the number of words and characters. Thus it is suitable for writing text with word/character limit. 
             </div>
           </div>
         </div>
@@ -105,7 +80,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="collapseThree"
             >
-              Accordion Item #3
+             <strong> Browser Compaitable</strong>
             </button>
           </h2>
           <div
@@ -115,21 +90,12 @@ export default function About() {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body" style = {myStyle}>
-              <strong>This is the third item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              Text-Manipulator works in any web browsers. It suits to count characters in facebook, blog, books, excel, pdf document, essays,etc.
             </div>
           </div>
         </div>
       </div>
-      <div className = "container my-1">
-        <button onClick = {toggleStyle} type="button" className ="btn-primary my-3">{btnText}</button>
-      </div>
+     
     </div>
   );
 }

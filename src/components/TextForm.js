@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 export default function TextForm(props) {
+  
+
 
   const [text, setText] = useState("");
   const handleUpClick = () => {
@@ -40,6 +42,7 @@ let handleCopy = () => {
     }
 
   
+  
   // text = ("new text"); //wrong way to change state
   // setText ("new text");
   return (
@@ -58,32 +61,32 @@ let handleCopy = () => {
           style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#042743'}} 
         ></textarea>
       </div>
-      <button className="btn-primary mx-2 " onClick={handleUpClick}>
+      <button className="btn-primary mx-1 my-1 " onClick={handleUpClick} >
         Convert to uppercase
       </button>
-      <button className="btn-primary mx-2" onClick={handleLoClick}>
+      <button className="btn-primary mx-1 my-1" onClick={handleLoClick}>
         Convert to lowercase
       </button>
-      <button className="btn-primary mx-2" onClick={handleTrClick}>
+      <button className="btn-primary mx-1 my-1" onClick={handleTrClick}>
         Trim first whitespaces
       </button>
-      <button className="btn-primary mx-2" onClick={handleCopy}>
+      <button className="btn-primary mx-1 my-1" onClick={handleCopy}>
         Copy Text
       </button>
-      <button className="btn-primary mx-2" onClick={handleExtraSpaces}>
+      <button className="btn-primary mx-1 my-1" onClick={handleExtraSpaces}>
         Remove Extra Spaces
       </button>
-      <button className="btn-primary mx-2" onClick={handleClearClick}>
+      <button className="btn-primary mx-1 my-1" onClick={handleClearClick}>
        Clear Text
       </button>
     </div>
     <div className = "container my-3" style ={{color: props.mode==='dark' ? 'white' : '#042743'}}>
       <h2>Your text summary</h2>
-      <p>{text.split(" ").length-1} words, {text.length} characters</p>
+      <p>{text.split(/\s+/).filter((element) => {return element.length!==0}).length} words, {text.length} characters</p>
       <p> 
-       {0.008 * text.split(" ").length}  Minutes to read </p>
+       {0.008 * text.split(" ").filter((element) => {return element.length!==0}).length}  Minutes to read </p>
       <h3>Preview</h3>
-      <p>{text.length>0?text:"Enter something in text box to preview it here"}</p>
+      <p>{text.length>0?text:"Nothing to preview!"}</p>
     </div>
     </>
   );
